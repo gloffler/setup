@@ -8,13 +8,11 @@ VIM_CONFIG="set ts=2 ai expandtab"
 VIM_RC=$HOME/.vimrc
 
 if [[ ! -z $DNF_CMD ]]; then
-  echo "Updating system..."
-  sudo dnf -y update
   echo "Installing tools..."
   sudo dnf install $TOOLS
   INSTALL_COMPLETE=$?
 elif [[ ! -z $APT_CMD ]]; then
-  echo "Updating system..."
+  echo "Updating repositories..."
   sudo apt-get update
   echo "Installing tools..."
   sudo apt-get install $TOOLS
@@ -28,14 +26,19 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
   if grep -wq "$VIM_CONFIG" $VIM_RC 2> /dev/null; then
     echo "VIM already configured!"
   else
-    echo "Configuring VIM..."
+    echo -n "Configuring VIM... "
     echo $VIM_CONFIG >> $VIM_RC
+    if [[ $? -eq 0 ]]; then
+      echo "Done."
+    else
+      echo "Failed."
+    fi
   fi
 
   if [[ $SHELL == "/usr/bin/fish" ]]; then
     echo "Fish already configured!"
   else
-    echo "Changing shell to fish..."
+    echo "Changing shell to fish... "
     chsh -s /usr/bin/fish
     sudo chsh -s /usr/bin/fish
   fi
