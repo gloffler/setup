@@ -2,7 +2,7 @@
 
 # Variables
 DNF_CMD=$(type dnf 2> /dev/null)
-APT_CMD=$(type apt 2> /dev/null)
+APT_CMD=$(type apt-get 2> /dev/null)
 
 TOOLS="vim nano git fish"
 VIM_CONFIG="set ts=2 ai expandtab"
@@ -15,8 +15,8 @@ if [[ ! -z $DNF_CMD ]]; then
   sudo dnf -y update
   INSTALL_COMPLETE=$(sudo dnf install $TOOLS)
 elif [[ ! -z $APT_CMD ]]; then
-  sudo apt update
-  INSTALL_COMPLETE=$(sudo apt install $TOOLS)
+  sudo apt-get update
+  INSTALL_COMPLETE=$(sudo apt-get install $TOOLS)
 else
   echo "Error: No package manager found!"
   exit 1;
