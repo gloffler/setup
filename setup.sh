@@ -37,19 +37,6 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
     fi
   fi
 
-# Check if Zsh is the default shell
-  if [[ $SHELL == "/usr/bin/zsh" ]]; then
-    echo "ZSH already set to default shell!"
-  else
-    echo "Changing shell to ZSH... "
-    chsh -s /usr/bin/zsh
-    sudo chsh -s /usr/bin/zsh
-  fi
-else
-  echo "Error: Installation failed!"
-  exit 1;
-fi
-
 # Check if Oh My Zsh is already installed (default directory: ~/.oh-my-zsh)
 if [ -d "$HOME/.oh-my-zsh" ]; then
     echo "Oh My Zsh is already installed."
