@@ -36,7 +36,7 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
   fi
 
   if [[ $SHELL == "/usr/bin/zsh" ]]; then
-    echo "ZSH already set to default Shell!"
+    echo "ZSH already set to default shell!"
   else
     echo "Changing shell to ZSH... "
     chsh -s /usr/bin/zsh
