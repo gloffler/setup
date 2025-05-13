@@ -7,6 +7,7 @@ TOOLS="vim nano git htop zsh"
 VIM_CONFIG="set ts=2 ai expandtab"
 VIM_RC=$HOME/.vimrc
 
+# Install tools
 if [[ ! -z $DNF_CMD ]]; then
   echo "Installing tools..."
   sudo dnf install $TOOLS
@@ -22,6 +23,7 @@ else
   exit 1;
 fi
 
+# VIM configuration
 if [[ $INSTALL_COMPLETE -eq 0 ]]; then
   if grep -wq "$VIM_CONFIG" $VIM_RC 2> /dev/null; then
     echo "VIM already configured!"
@@ -35,6 +37,7 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
     fi
   fi
 
+# Check if Zsh is the default shell
   if [[ $SHELL == "/usr/bin/zsh" ]]; then
     echo "ZSH already set to default shell!"
   else
@@ -45,4 +48,13 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
 else
   echo "Error: Installation failed!"
   exit 1;
+fi
+
+# Check if Oh My Zsh is already installed (default directory: ~/.oh-my-zsh)
+if [ -d "$HOME/.oh-my-zsh" ]; then
+    echo "Oh My Zsh is already installed."
+else
+    echo "Oh My Zsh is not installed. Starting installation..."
+    # Run the official install command
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
