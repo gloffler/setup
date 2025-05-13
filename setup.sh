@@ -3,7 +3,7 @@
 # Variables
 DNF_CMD=$(type dnf 2> /dev/null)
 APT_CMD=$(type apt-get 2> /dev/null)
-TOOLS="vim nano git fish"
+TOOLS="vim nano git htop zsh"
 VIM_CONFIG="set ts=2 ai expandtab"
 VIM_RC=$HOME/.vimrc
 
@@ -35,12 +35,12 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
     fi
   fi
 
-  if [[ $SHELL == "/usr/bin/fish" ]]; then
-    echo "Fish already configured!"
+  if [[ $SHELL == "/usr/bin/zsh" ]]; then
+    echo "ZSH already set to default Shell!"
   else
-    echo "Changing shell to fish... "
-    chsh -s /usr/bin/fish
-    sudo chsh -s /usr/bin/fish
+    echo "Changing shell to ZSH... "
+    chsh -s /usr/bin/zsh
+    sudo chsh -s /usr/bin/zsh
   fi
 else
   echo "Error: Installation failed!"
