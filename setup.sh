@@ -47,3 +47,5 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
   fi
 fi
 
+# Change Oh My Zsh default theme to flazz
+sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="flazz"/' ~/.zshrc
