@@ -10,13 +10,13 @@ VIM_RC=$HOME/.vimrc
 # Install tools
 if [[ ! -z $DNF_CMD ]]; then
   echo "Installing tools..."
-  dnf install -y $TOOLS
+  sudo dnf install -y $TOOLS
   INSTALL_COMPLETE=$?
 elif [[ ! -z $APT_CMD ]]; then
   echo "Updating repositories..."
-  apt-get update
+  sudo apt-get update
   echo "Installing tools..."
-  apt-get install -y $TOOLS
+  sudo apt-get install -y $TOOLS
   INSTALL_COMPLETE=$?
 else
   echo "Error: No package manager found!"
