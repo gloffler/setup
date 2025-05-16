@@ -10,6 +10,8 @@ VIM_RC=$HOME/.vimrc
 # Install tools
 if [[ ! -z $DNF_CMD ]]; then
   echo "Installing tools..."
+  # epel-release is needed for additional tools like htop
+  sudo dnf install epel-release
   sudo dnf install -y $TOOLS
   INSTALL_COMPLETE=$?
 elif [[ ! -z $APT_CMD ]]; then
