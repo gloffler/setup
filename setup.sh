@@ -42,7 +42,7 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
       echo "Oh My Zsh is already installed."
   else
     echo "Oh My Zsh is not installed. Starting installation..."
-    RUNZSH=no KEEP_ZSHRC=yes \
+    RUNZSH=yes KEEP_ZSHRC=yes \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   fi
 fi
