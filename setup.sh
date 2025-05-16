@@ -44,8 +44,7 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
     echo "Oh My Zsh is not installed. Starting installation..."
     RUNZSH=yes KEEP_ZSHRC=yes \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    # Change Oh My Zsh default theme to flazz
+    sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="flazz"/' ~/.zshrc
   fi
 fi
-
-# Change Oh My Zsh default theme to flazz
-sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="flazz"/' ~/.zshrc
