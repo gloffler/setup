@@ -11,14 +11,14 @@ VIM_RC=$HOME/.vimrc
 if [[ ! -z $DNF_CMD ]]; then
   echo "Installing tools..."
   # epel-release is needed for additional tools like htop
-  sudo dnf install epel-release
-  sudo dnf install -y $TOOLS
+  sudo dnf install -y epel-release
+  sudo dnf install $TOOLS
   INSTALL_COMPLETE=$?
 elif [[ ! -z $APT_CMD ]]; then
   echo "Updating repositories..."
   sudo apt-get update
   echo "Installing tools..."
-  sudo apt-get install -y $TOOLS
+  sudo apt-get install $TOOLS
   INSTALL_COMPLETE=$?
 else
   echo "Error: No package manager found!"
