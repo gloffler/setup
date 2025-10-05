@@ -6,6 +6,7 @@ APT_CMD=$(type apt-get 2> /dev/null)
 TOOLS="vim curl nano git htop zsh"
 VIM_CONFIG="set ts=2 ai expandtab"
 VIM_RC=$HOME/.vimrc
+ZSH_RC=$HOME/.zshrc
 
 # Install tools
 if [[ ! -z $DNF_CMD ]]; then
@@ -48,6 +49,19 @@ if [[ $INSTALL_COMPLETE -eq 0 ]]; then
     RUNZSH=yes KEEP_ZSHRC=yes \
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     # Change Oh My Zsh default theme to flazz
-    sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="flazz"/' ~/.zshrc
+    echo "Adding flazz theme to zshrc..."
+    sed -i "s/^ZSH_THEME=".*"/ZSH_THEME="flazz"/" $ZSH_RC
+    # Install plugins
+    echo "Installing Oh My Zsh plugins..."
+    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
+    # Add plugins zo .zshrc
+    if ! grep -q "zsh-autosuggestions" "$ZSH_RC"; then
+      echo "Adding downloaded plugins zo zshrc..."
+      sed -i "/^plugins=(/ s/git)/git zsh-autosuggestions zsh-syntax-highlighting)/" "$ZSH_RC"
+    else
+      echo "Plugins already installed. Skipping..."
+    fi
   fi
+  echo "Environment setup Done!"
 fi
