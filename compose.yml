@@ -1,0 +1,7 @@
+services:
+  gregor-setup:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gregor-setup
+    command: ["bash", "setup.sh"]
