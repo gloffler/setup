@@ -1,0 +1,21 @@
+# Homebew Path
+# eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# oh-my-posh
+# eval "$(oh-my-posh init zsh --config ~/.poshthemes/catppuccin_mocha.omp.json)"
+# export PATH=$PATH:/home/gregor/.local/bin
+# eval "$(oh-my-posh init zsh)"
+
+# Load ZINIT
+# source $HOMEBREW_PREFIX/opt/zinit/zinit.zsh
+# source ~/.local/share/zinit/zinit.git/zinit.zsh
+
+# ZINIT plugins
+# zinit light marlonrichert/zsh-autocomplete
+# zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-history-substring-search
+# zinit light zsh-users/zsh-syntax-highlighting
+
+# NVM
+# export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
