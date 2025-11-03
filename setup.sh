@@ -3,7 +3,7 @@
 # Variables
 DNF_CMD=$(type dnf 2> /dev/null)
 APT_CMD=$(type apt-get 2> /dev/null)
-TOOLS="neovim curl nano git htop zsh"
+TOOLS="neovim curl nano git htop zsh unzip"
 ZSH_RC=$HOME/.zshrc
 
 # Install tools
