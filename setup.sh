@@ -3,9 +3,7 @@
 # Variables
 DNF_CMD=$(type dnf 2> /dev/null)
 APT_CMD=$(type apt-get 2> /dev/null)
-TOOLS="vim curl nano git htop zsh"
-VIM_CONFIG="set ts=2 ai expandtab"
-VIM_RC=$HOME/.vimrc
+TOOLS="neovim curl nano git htop zsh"
 ZSH_RC=$HOME/.zshrc
 
 # Install tools
@@ -27,41 +25,20 @@ else
   exit 1
 fi
 
-# VIM configuration
-if [[ $INSTALL_COMPLETE -eq 0 ]]; then
-  if grep -wq "$VIM_CONFIG" "$VIM_RC" 2> /dev/null; then
-    echo "VIM already configured!"
-  else
-    echo -n "Configuring VIM... "
-    echo "$VIM_CONFIG" >> "$VIM_RC"
-    if [[ $? -eq 0 ]]; then
-      echo "Done."
-    else
-      echo "Failed."
-    fi
-  fi
+# Install zinit
+bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 
-  # Check if Oh My Zsh is already installed (default directory: ~/.oh-my-zsh)
-  if [ -d "$HOME/.oh-my-zsh" ]; then
-      echo "Oh My Zsh is already installed."
-  else
-    echo "Oh My Zsh is not installed. Starting installation..."
-    RUNZSH=yes KEEP_ZSHRC=yes \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    # Change Oh My Zsh default theme to flazz
-    echo "Adding flazz theme to zshrc..."
-    sed -i "s/^ZSH_THEME=".*"/ZSH_THEME="flazz"/" $ZSH_RC
-    # Install plugins
-    echo "Installing Oh My Zsh plugins..."
-    git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting
-    # Add plugins zo .zshrc
-    if ! grep -q "zsh-autosuggestions" "$ZSH_RC"; then
-      echo "Adding downloaded plugins zo zshrc..."
-      sed -i "/^plugins=(/ s/git)/git zsh-autosuggestions zsh-syntax-highlighting)/" "$ZSH_RC"
-    else
-      echo "Plugins already installed. Skipping..."
-    fi
-  fi
-  echo "Environment setup Done!"
+BLOCK='ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"'
+
+if ! grep -Fq 'zinit.git' "$ZSH_RC"; then
+  echo "$BLOCK" >> "$ZSH_RC"
+  echo "Zinit added to $ZSH_RC"
+else
+  echo "Zinit already exists in $ZSH_RC"
 fi
+
+# Install oh my posh
+curl -s https://ohmyposh.dev/install.sh | bash -s
