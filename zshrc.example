@@ -12,8 +12,8 @@
 
 # ZINIT plugins
 # zinit light marlonrichert/zsh-autocomplete
-# zinit light zsh-users/zsh-autosuggestions
 # zinit light zsh-users/zsh-history-substring-search
+# zinit light zsh-users/zsh-autosuggestions
 # zinit light zsh-users/zsh-syntax-highlighting
 
 # NVM
