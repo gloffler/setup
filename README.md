@@ -7,6 +7,10 @@ Automates bootstrapping a fresh Linux workstation with a few everyday tools, an 
 - ✅ Installs zinit
 - ✅ Installs Oh My Posh
 
+## Terminal
+
+![Terminal screenshot](./screenshot.png "Terminal")
+
 ## Quick Start
 
 Run the installer from a fresh terminal session:
