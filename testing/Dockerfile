@@ -7,7 +7,7 @@ RUN apt-get install -y \
     sudo \
     && apt-get clean
 
-COPY setup.sh /setup.sh
+COPY ../setup.sh /setup.sh
 
 RUN chmod +x /setup.sh
 
