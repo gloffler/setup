@@ -10,6 +10,12 @@
 # source $HOMEBREW_PREFIX/opt/zinit/zinit.zsh
 # source ~/.local/share/zinit/zinit.git/zinit.zsh
 
+# enable zsh history
+# HISTFILE=~/.zsh_history
+# HISTSIZE=10000
+# SAVEHIST=10000
+# setopt appendhistory
+
 # ZINIT plugins
 # zinit light marlonrichert/zsh-autocomplete
 # zinit light zsh-users/zsh-history-substring-search
